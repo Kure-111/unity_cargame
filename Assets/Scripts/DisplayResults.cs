@@ -13,9 +13,6 @@ public class DisplayResults : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        // ローカルのリザルトを表示
-        DisplayResultsLocal();
-
         // マスタークライアントであれば、リザルトをすべてのクライアントに同期
         if (PhotonNetwork.IsMasterClient)
         {
@@ -40,13 +37,13 @@ public class DisplayResults : MonoBehaviourPunCallbacks
 
     void DisplayResultsLocal()
     {
+        if (GlobalGameData.finishOrder == null) return;
+
         resultsText.text = "";
 
         for (int i = 0; i < GlobalGameData.finishOrder.Count; i++)
         {
             resultsText.text += (i + 1) + ". " + GlobalGameData.finishOrder[i] + "\n";
         }
-
-        //GlobalGameData.finishOrder.Clear();
     }
 }

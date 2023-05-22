@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Photon.Pun;
 using System.Collections;
-using TMPro;
+
 
 
 #pragma warning disable 649
@@ -42,6 +42,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
 
+
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
         private float m_SteerAngle;
@@ -60,8 +61,8 @@ namespace UnityStandardAssets.Vehicles.Car
         public float Revs { get; private set; }
         public float AccelInput { get; private set; }
 
-        // Use this for initialization
-        public TextMeshProUGUI speedText;
+
+
 
         private void Start()
         {
@@ -91,20 +92,6 @@ namespace UnityStandardAssets.Vehicles.Car
             yield return new WaitForSeconds(seconds);
             m_Rigidbody.constraints = RigidbodyConstraints.None;
 
-            if (speedText != null)
-            {
-                StartCoroutine(DisplaySpeed());
-            }
-        }
-        IEnumerator DisplaySpeed()
-        {
-            while (true)
-            {
-                float speed = CurrentSpeed;
-                speedText.text = "Speed: " + speed.ToString("F0") + " " + GetSpeedUnit();
-
-                yield return null;
-            }
         }
 
         private string GetSpeedUnit()

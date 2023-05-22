@@ -21,6 +21,7 @@ public class MasterClientButton : MonoBehaviour
 
         // ルームから退室
         PhotonNetwork.LeaveRoom();
+        Debug.Log(GlobalGameData.finishOrder);
 
         // タイトルシーンに遷移
         SceneManager.LoadScene("Title");

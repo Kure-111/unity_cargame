@@ -11,6 +11,7 @@ public class GameControl : MonoBehaviourPunCallbacks
     private void Start()
     {
 
+        finishOrder = new List<string>();
     }
 
     public void PlayerFinished(string playerName)

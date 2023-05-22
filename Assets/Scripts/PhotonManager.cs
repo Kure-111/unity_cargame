@@ -66,6 +66,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         //メニューをすべて閉じる
         CloseMenuUI();
+        Debug.Log(GlobalGameData.finishOrder);
 
         //ロードパネルを表示してテキスト更新
         loadingPanel.SetActive(true);
@@ -187,7 +188,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         CheckRoomMaster();//ルームマスターか判定する
     }
 
-    
+
 
 
     //退出ボタン押下時に呼ばれる。参加中の部屋を抜ける
@@ -271,7 +272,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
             allRoomButtons.Add(newButton);
         }
 
-        
+
     }
 
     //ルームボタンUI初期化
@@ -368,9 +369,9 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
             if (PlayerPrefs.HasKey("playerName"))//キーが保存されているか確認
             {
-                
+
                 placeholderText.text = PlayerPrefs.GetString("playerName");
-                
+
                 nameInput.text = PlayerPrefs.GetString("playerName");//インプットフィールドに名前を表示しておく
 
 
