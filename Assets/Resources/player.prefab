@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -1029.1, y: 34.9}
+  m_AnchoredPosition: {x: -125.3, y: 34.9}
   m_SizeDelta: {x: 250, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7365561002090140771
@@ -2110,7 +2110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8d3968294210ba4a9d2bb96dfa74a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Target: {fileID: 0}
+  m_Target: {fileID: 6022026326790190926}
   m_AutoTargetPlayer: 1
   m_UpdateType: 0
   m_MoveSpeed: 15
@@ -7045,6 +7045,7 @@ GameObject:
   - component: {fileID: 6022026326782229951}
   - component: {fileID: 6022026326782229950}
   - component: {fileID: 4854857792677608526}
+  - component: {fileID: 6111054627585185379}
   m_Layer: 0
   m_Name: Car
   m_TagString: Player
@@ -7218,6 +7219,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.8057755, z: 2.750305}
   m_Center: {x: 0, y: 0.6819225, z: 0.8751534}
+--- !u!114 &6111054627585185379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6022026326782229893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a89800a5c365d48be44ccbb15fcc33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6022026326902246641
 GameObject:
   m_ObjectHideFlags: 0
