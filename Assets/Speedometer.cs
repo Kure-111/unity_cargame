@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class Speedometer : MonoBehaviour
+using Photon.Pun;
+public class Speedometer : MonoBehaviourPun
 {
     public Rigidbody targetRigidbody; // The Rigidbody you want to measure the speed of
     private int speedKPH;
@@ -11,6 +12,11 @@ public class Speedometer : MonoBehaviour
     void Update()
     {
         // Calculate the speed in m/s
+        if (!photonView.IsMine)
+        {
+            speedmetar.gameObject.SetActive(false);
+            return;
+        }
         float speedMS = targetRigidbody.velocity.magnitude;
 
         // Convert the speed to km/h and round to nearest integer

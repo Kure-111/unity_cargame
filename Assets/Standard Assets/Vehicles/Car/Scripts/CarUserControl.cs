@@ -20,7 +20,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void FixedUpdate()
         {
-            if (photonView.IsMine && PhotonNetwork.IsConnected)
+            if (!photonView.IsMine && PhotonNetwork.IsConnected)
             {
                 return;
             }
