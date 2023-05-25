@@ -50,10 +50,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private bool setName;//名前入力判定
 
 
-    public GameObject startButton;//ゲーム開始するためのボタン
+    public GameObject startButton;
+    public GameObject startButton1;
+    public GameObject startButton2;//ゲーム開始するためのボタン
 
 
-    public string levelToPlay;//遷移先のシーン名
+    public string levelToPlay;
+    public string levelToPlay1;
+    public string levelToPlay2;//遷移先のシーン名
 
 
     private void Awake()
@@ -424,10 +428,14 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             //マスターのみに開始ボタンを表示させる
             startButton.gameObject.SetActive(true);
+            startButton1.gameObject.SetActive(true);
+            startButton2.gameObject.SetActive(true);
         }
         else
         {
             startButton.gameObject.SetActive(false);
+            startButton1.gameObject.SetActive(false);
+            startButton2.gameObject.SetActive(false);
         }
     }
 
@@ -439,6 +447,8 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         {
             //部屋のマスターになっていたら開始ボタンを表示する
             startButton.gameObject.SetActive(true);
+            startButton1.gameObject.SetActive(true);
+            startButton2.gameObject.SetActive(true);
         }
 
     }
@@ -450,6 +460,19 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         //引数のステージを読み込む
         PhotonNetwork.LoadLevel(levelToPlay);
+
+    }
+
+    public void PlayGame1()
+    {
+        //引数のステージを読み込む
+        PhotonNetwork.LoadLevel(levelToPlay1);
+
+    }
+    public void PlayGam2()
+    {
+        //引数のステージを読み込む
+        PhotonNetwork.LoadLevel(levelToPlay2);
 
     }
 

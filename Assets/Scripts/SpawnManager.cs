@@ -56,7 +56,7 @@ public class SpawnManager : MonoBehaviour
         if (player != null)
         {
             //5秒後にリスポーンさせる
-            Invoke("SpawnPlayer", 2f);
+            Invoke("SpawnPlayer", 1f);
         }
         //playerをネットワーク上から削除
         PhotonNetwork.Destroy(player);
