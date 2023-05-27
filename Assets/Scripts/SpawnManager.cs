@@ -8,6 +8,8 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     private List<Transform> availableSpawnPositions;
 
     public GameObject playerPrefab;
+
+    public GameObject masterPlayerPrefab;
     private GameObject player;
     public float respawnInterval = 5f;
 
@@ -37,7 +39,15 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     public void SpawnPlayer()
     {
         Transform spawnPoint = GetSpawnPoint();
-        player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, spawnPoint.rotation);
+        // マスタープレイヤーであればmasterPlayerPrefabを、それ以外はplayerPrefabを生成する
+        if (PhotonNetwork.IsMasterClient)
+        {
+            player = PhotonNetwork.Instantiate(masterPlayerPrefab.name, spawnPoint.position, spawnPoint.rotation);
+        }
+        else
+        {
+            player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPoint.position, spawnPoint.rotation);
+        }
     }
     public void Die()
     {
