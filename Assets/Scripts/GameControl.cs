@@ -38,7 +38,7 @@ public class GameControl : MonoBehaviourPunCallbacks
 
     private void CheckAllPlayersFinished()
     {
-        if (playersFinished >= PhotonNetwork.PlayerList.Length)
+        if (playersFinished - 1 >= PhotonNetwork.PlayerList.Length)
         {
             DisplayFinishOrder();
             LoadNextScene();
