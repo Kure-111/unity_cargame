@@ -34,11 +34,12 @@ public class GameControl : MonoBehaviourPunCallbacks
         playersFinished++;
         finishOrder.Add(playerName);
         CheckAllPlayersFinished();
+        Debug.Log(playersFinished);
     }
 
     private void CheckAllPlayersFinished()
     {
-        if (playersFinished - 1 >= PhotonNetwork.PlayerList.Length)
+        if (playersFinished + 1 >= PhotonNetwork.PlayerList.Length)
         {
             DisplayFinishOrder();
             LoadNextScene();
