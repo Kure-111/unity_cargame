@@ -3,8 +3,6 @@ using UnityEngine;
 using Photon.Pun;
 using System.Collections;
 
-
-
 #pragma warning disable 649
 namespace UnityStandardAssets.Vehicles.Car
 {
@@ -43,6 +41,8 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_BrakeTorque;
 
 
+
+
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
         private float m_SteerAngle;
@@ -50,8 +50,11 @@ namespace UnityStandardAssets.Vehicles.Car
         private float m_GearFactor;
         private float m_OldRotation;
         private float m_CurrentTorque;
-        private Rigidbody m_Rigidbody;
+        public Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
+
+        public bool isDrifting = false;
+        public float driftFactor = 0f;
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
@@ -295,7 +298,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private void AddDownForce()
         {
             m_WheelColliders[0].attachedRigidbody.AddForce(-transform.up * m_Downforce *
-                                                         m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
+m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
         }
 
 
