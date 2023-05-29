@@ -6,8 +6,7 @@ using System.Collections;
 public class Teleporter : MonoBehaviour
 {
     public string targetTag = "goal";
-    public Vector3 minLocation;
-    public Vector3 maxLocation;
+
     public TextMeshProUGUI messageText;
     public float messageDelay = 3.0f;
 
@@ -15,12 +14,8 @@ public class Teleporter : MonoBehaviour
     {
         if (other.CompareTag(targetTag))
         {
-            Vector3 teleportLocation = new Vector3(
-                Random.Range(minLocation.x, maxLocation.x),
-                Random.Range(minLocation.y, maxLocation.y),
-                Random.Range(minLocation.z, maxLocation.z)
-            );
-
+            Vector3 teleportLocation = new Vector3(1000, 0, 0);
+            Destroy(this.gameObject);
             other.transform.position = teleportLocation;
             messageText.gameObject.SetActive(true);
             StartCoroutine(HideTextAfterDelay(messageDelay));
@@ -31,5 +26,6 @@ public class Teleporter : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         messageText.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 }
