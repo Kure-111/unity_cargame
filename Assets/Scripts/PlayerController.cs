@@ -28,25 +28,25 @@ public class PlayerController : MonoBehaviourPunCallbacks
             }
         }
     }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(targetTag))
-        {
-            Vector3 teleportLocation = new Vector3(
-                Random.Range(minLocation.x, maxLocation.x),
-                Random.Range(minLocation.y, maxLocation.y),
-                Random.Range(minLocation.z, maxLocation.z)
-            );
+    // void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag(targetTag))
+    //     {
+    //         Vector3 teleportLocation = new Vector3(
+    //             Random.Range(minLocation.x, maxLocation.x),
+    //             Random.Range(minLocation.y, maxLocation.y),
+    //             Random.Range(minLocation.z, maxLocation.z)
+    //         );
 
-            other.transform.position = teleportLocation;
-            if (photonView.IsMine)
-            {
-                messageText.gameObject.SetActive(true);
-            }
+    //         other.transform.position = teleportLocation;
+    //         if (photonView.IsMine)
+    //         {
+    //             messageText.gameObject.SetActive(true);
+    //         }
 
-            StartCoroutine(HideTextAfterDelay(messageDelay));
-        }
-    }
+    //         StartCoroutine(HideTextAfterDelay(messageDelay));
+    //     }
+    // }
     IEnumerator HideTextAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);

@@ -7,17 +7,16 @@ public class Goal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            // Retrieve the PhotonView component from the player object
+            // プレイヤーオブジェクトからPhotonViewコンポーネントを取得
             PhotonView photonView = other.gameObject.GetComponent<PhotonView>();
 
-            // If the player object has a PhotonView and it has an owner, get the owner's name
+            // プレイヤーオブジェクトにPhotonViewが存在し、オーナーが設定されている場合はそのオーナーの名前を取得
             string playerName = photonView != null && photonView.Owner != null ? photonView.Owner.NickName : "Unknown";
 
-            // Assuming the GameControl component is attached to the same GameObject as this script
-            GetComponent<GameControl>().PlayerFinished(playerName);
+            // GameControlコンポーネントはこのスクリプトと同じGameObjectにアタッチされていると仮定
+            GetComponent<GameControl>().PlayerFinished(playerName, other.gameObject);
 
             Debug.Log("OK!");
         }
     }
 }
-

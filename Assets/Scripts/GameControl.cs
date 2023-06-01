@@ -14,13 +14,19 @@ public class GameControl : MonoBehaviourPunCallbacks
         finishOrder = new List<string>();
     }
 
-    public void PlayerFinished(string playerName)
+    public void PlayerFinished(string playerName, GameObject playerObject)
     {
         if (PhotonNetwork.IsMasterClient)
         {
             playersFinished++;
             finishOrder.Add(playerName);
             CheckAllPlayersFinished();
+
+            // Destroy the player object
+            if (playerObject.GetComponent<PhotonView>().IsMine)
+            {
+                PhotonNetwork.Destroy(playerObject);
+            }
         }
         else
         {
