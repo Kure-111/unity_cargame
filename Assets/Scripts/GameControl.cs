@@ -38,11 +38,10 @@ public class GameControl : MonoBehaviourPunCallbacks
 
     private void CheckAllPlayersFinished()
     {
-        if (playersFinished >= PhotonNetwork.PlayerList.Length)
-        {
-            DisplayFinishOrder();
-            LoadNextScene();
-        }
+
+        DisplayFinishOrder();
+        LoadNextScene();
+
     }
 
     private void DisplayFinishOrder()
