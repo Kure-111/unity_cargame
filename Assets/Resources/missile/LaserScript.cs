@@ -42,7 +42,7 @@ public class LaserScript : MonoBehaviour
         // Enterキーが押されたかどうかを確認します
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Debug.Log("Enter key was pressed.");
+
 
             if (currentTarget != null)
             {
