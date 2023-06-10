@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Photon.Pun;
 public class LaserScript : MonoBehaviour
 {
     public Transform missilePrefab; // 発射するミサイルのプレハブ
@@ -45,8 +45,8 @@ public class LaserScript : MonoBehaviour
             if (currentTarget != null)
             {
                 // ロックオンしたプレイヤーに対してミサイルを発射します
-                Transform missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
-                missile.GetComponent<MissileScript>().target = currentTarget;
+                PhotonNetwork.Instantiate(missilePrefab.name, transform.position, Quaternion.identity);
+                missilePrefab.GetComponent<MissileScript>().target = currentTarget;
             }
         }
     }
