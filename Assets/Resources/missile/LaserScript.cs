@@ -42,18 +42,11 @@ public class LaserScript : MonoBehaviour
         // Enterキーが押されたかどうかを確認します
         if (Input.GetKeyDown(KeyCode.Return))
         {
-
-
             if (currentTarget != null)
             {
-                Debug.Log("Current target is not null.");
-
+                // ロックオンしたプレイヤーに対してミサイルを発射します
                 Transform missile = Instantiate(missilePrefab, transform.position, Quaternion.identity);
                 missile.GetComponent<MissileScript>().target = currentTarget;
-            }
-            else
-            {
-                Debug.Log("Current target is null.");
             }
         }
     }
