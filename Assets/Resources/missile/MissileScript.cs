@@ -11,6 +11,7 @@ public class MissileScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Rigidbodyを取得
+        transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f); // Y軸の回転を適用
     }
 
     void Update()

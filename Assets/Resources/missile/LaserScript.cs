@@ -1,5 +1,6 @@
 using UnityEngine;
 using Photon.Pun;
+
 public class LaserScript : MonoBehaviour
 {
     public Transform missilePrefab; // 発射するミサイルのプレハブ
@@ -39,15 +40,18 @@ public class LaserScript : MonoBehaviour
             lineRenderer.SetPosition(1, transform.position + transform.forward * range);
         }
 
-
         // Enterキーが押されたかどうかを確認します
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            if (currentTarget != null)
+            {
+                // ロックオンしたプレイヤーに対してミサイルを発射します
+                Vector3 spawnPosition = transform.position;
+                Quaternion rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y + 90f, 0f); // Y軸の回転を適用
 
-
-            PhotonNetwork.Instantiate(missilePrefab.name, transform.position, Quaternion.identity);
-
+                Transform missile = PhotonNetwork.Instantiate(missilePrefab.name, spawnPosition, rotation).transform;
+                missile.GetComponent<MissileScript>().target = currentTarget;
+            }
         }
-
     }
 }
