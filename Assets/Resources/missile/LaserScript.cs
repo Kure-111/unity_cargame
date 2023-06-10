@@ -43,12 +43,10 @@ public class LaserScript : MonoBehaviour
         // Enterキーが押されたかどうかを確認します
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (currentTarget != null && currentTarget.TryGetComponent(out MissileScript missileScript))
-            {
-                // ロックオンしたプレイヤーに対してミサイルを発射します
-                missileScript.target = currentTarget;
-                PhotonNetwork.Instantiate(missilePrefab.name, transform.position, Quaternion.identity);
-            }
+
+
+            PhotonNetwork.Instantiate(missilePrefab.name, transform.position, Quaternion.identity);
+
         }
 
     }
