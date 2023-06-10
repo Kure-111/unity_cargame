@@ -39,15 +39,17 @@ public class LaserScript : MonoBehaviour
             lineRenderer.SetPosition(1, transform.position + transform.forward * range);
         }
 
+
         // Enterキーが押されたかどうかを確認します
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (currentTarget != null)
+            if (currentTarget != null && currentTarget.TryGetComponent(out MissileScript missileScript))
             {
                 // ロックオンしたプレイヤーに対してミサイルを発射します
+                missileScript.target = currentTarget;
                 PhotonNetwork.Instantiate(missilePrefab.name, transform.position, Quaternion.identity);
-                missilePrefab.GetComponent<MissileScript>().target = currentTarget;
             }
         }
+
     }
 }
