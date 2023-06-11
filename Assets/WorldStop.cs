@@ -2,42 +2,42 @@ using UnityEngine;
 using Photon.Pun;
 using UnityStandardAssets.Vehicles.Car;
 
-public class WorldStop : MonoBehaviour
+public class WorldStop : MonoBehaviourPunCallbacks
 {
-    public AudioSource stopSoundSource; // ストップ音のオーディオソース
-    public GameObject visibleObject; // 停止した車の近くに表示したいオブジェクト
+    public AudioSource stopSoundSource;
+    public GameObject visibleObject;
     private CarController carController;
     private PhotonView photonView;
-    private bool isCarStopped = false; // 車が停止しているかどうかのフラグ
-    private GameObject spawnedObject; // 生成したオブジェクトへの参照
-    private float originalTopSpeed; // 車の元の最高速度
+    private bool isCarStopped = false;
+    private GameObject spawnedObject;
+    private float originalTopSpeed;
 
     void Start()
     {
         carController = GetComponent<CarController>();
         photonView = GetComponent<PhotonView>();
-        originalTopSpeed = carController.m_Topspeed; // 車の元の最高速度を保存します
+        originalTopSpeed = carController.m_Topspeed;
     }
 
     void Update()
     {
+        // Only the master client can trigger the stop
         if (Input.GetKeyDown(KeyCode.Q) && PhotonNetwork.IsMasterClient)
         {
-            ToggleCarStop(); // すべての車の停止/再開を切り替える
+            photonView.RPC("ToggleCarStop", RpcTarget.All);
         }
     }
 
     [PunRPC]
     public void ToggleCarStop()
     {
-        isCarStopped = !isCarStopped; // フラグを反転させる
+        isCarStopped = !isCarStopped;
 
-        // ここで車の速度を0に設定または元に戻します
-        if (carController != null && !photonView.IsMine) // Qを押したプレイヤー（MasterClient）の車は除く
+        // Apply the stop/start to all players, except for the master client
+        if (carController != null && photonView.Owner != PhotonNetwork.MasterClient)
         {
-            carController.m_Topspeed = isCarStopped ? 0 : originalTopSpeed; // isCarStoppedがtrueなら0、そうでなければ元の速度に戻します
+            carController.m_Topspeed = isCarStopped ? 0 : originalTopSpeed;
 
-            // 効果音を再生または停止します
             if (isCarStopped && !stopSoundSource.isPlaying)
             {
                 stopSoundSource.Play();
@@ -47,7 +47,7 @@ public class WorldStop : MonoBehaviour
                 stopSoundSource.Stop();
             }
 
-            // 見えるオブジェクトをネットワーク上に生成または削除します
+            // Only instantiate/destroy the object for non-master players
             if (isCarStopped)
             {
                 spawnedObject = PhotonNetwork.Instantiate(visibleObject.name, transform.position, Quaternion.identity);

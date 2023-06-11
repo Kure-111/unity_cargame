@@ -6,50 +6,23 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviourPunCallbacks
 {
-    SpawnManager spawnManager;
-    public string targetTag = "goal";
-    public Vector3 minLocation;
-    public Vector3 maxLocation;
-    public TextMeshProUGUI messageText;
-    public float messageDelay = 3.0f;
-    private void Awake()
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+    private PhotonView photonView;
+
+    void Start()
     {
-        spawnManager = GameObject.FindGameObjectWithTag("SpawnManager").GetComponent<SpawnManager>();
-        messageText.gameObject.SetActive(false);
+        startPosition = transform.position;
+        startRotation = transform.rotation;
+        photonView = GetComponent<PhotonView>();
     }
+
     void Update()
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && Input.GetKeyDown(KeyCode.R))
         {
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                spawnManager.Die();
-            }
+            transform.position = startPosition;
+            transform.rotation = startRotation;
         }
-    }
-    // void OnTriggerEnter(Collider other)
-    // {
-    //     if (other.CompareTag(targetTag))
-    //     {
-    //         Vector3 teleportLocation = new Vector3(
-    //             Random.Range(minLocation.x, maxLocation.x),
-    //             Random.Range(minLocation.y, maxLocation.y),
-    //             Random.Range(minLocation.z, maxLocation.z)
-    //         );
-
-    //         other.transform.position = teleportLocation;
-    //         if (photonView.IsMine)
-    //         {
-    //             messageText.gameObject.SetActive(true);
-    //         }
-
-    //         StartCoroutine(HideTextAfterDelay(messageDelay));
-    //     }
-    // }
-    IEnumerator HideTextAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        messageText.gameObject.SetActive(false);
     }
 }
