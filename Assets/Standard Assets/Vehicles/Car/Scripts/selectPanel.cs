@@ -46,39 +46,11 @@ namespace UnityStandardAssets.Vehicles.Car
         // Update is called once per frame
         void Update()
         {
-            if (photonView.IsMine)
+            if (photonView.IsMine&& photonView.Owner == PhotonNetwork.MasterClient)
             {
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    commandStarted = true;
-                    sequenceA = false;
-                    sequenceB = false;
-                }
-
-                if (commandStarted)
-                {
-                    if (Input.GetKeyDown(KeyCode.UpArrow) && !sequenceA)
-                    {
-                        sequenceA = true;
-                    }
-                    else if (Input.GetKeyDown(KeyCode.DownArrow) && sequenceA && !sequenceB)
-                    {
-                        sequenceB = true;
-                    }
-                    else if (Input.GetKeyDown(KeyCode.A) && sequenceA && sequenceB)
-                    {
-                        ultimateButton.gameObject.SetActive(true);
-                        commandStarted = false;
-                    }
-                    else if (Input.anyKeyDown)
-                    {
-
-                        commandStarted = false;
-                        sequenceA = false;
-                        sequenceB = false;
-                    }
-                }
+                ultimateButton.gameObject.SetActive(true);
             }
+
         }
         IEnumerator SetInactiveAfterSeconds(int seconds)
         {
