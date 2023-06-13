@@ -4,13 +4,10 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-//photonViewと、PUNが呼び出すことのできるすべてのコールバック/イベントを提供します。使用したいイベント/メソッドをオーバーライドしてください。
+
 public class PhotonManager : MonoBehaviourPunCallbacks
 {
-    //よく見るドキュメントページ
-    //https://doc-api.photonengine.com/ja-jp/pun/current/class_photon_1_1_pun_1_1_photon_network.html
-    //https://doc-api.photonengine.com/ja-jp/pun/current/class_photon_1_1_pun_1_1_mono_behaviour_pun_callbacks.html
-    //https://doc-api.photonengine.com/ja-jp/pun/current/namespace_photon_1_1_realtime.html
+    
 
     public static PhotonManager instance;//static
     public GameObject loadingPanel;//ロードパネル
@@ -50,7 +47,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     private bool setName;//名前入力判定
 
 
-    public GameObject startButton;
+    //public GameObject startButton;
     public GameObject startButton1;
     public GameObject startButton2;//ゲーム開始するためのボタン
 
@@ -427,13 +424,13 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             //マスターのみに開始ボタンを表示させる
-            startButton.gameObject.SetActive(true);
+            //startButton.gameObject.SetActive(true);
             startButton1.gameObject.SetActive(true);
             startButton2.gameObject.SetActive(true);
         }
         else
         {
-            startButton.gameObject.SetActive(false);
+            //startButton.gameObject.SetActive(false);
             startButton1.gameObject.SetActive(false);
             startButton2.gameObject.SetActive(false);
         }
@@ -446,7 +443,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.IsMasterClient)
         {
             //部屋のマスターになっていたら開始ボタンを表示する
-            startButton.gameObject.SetActive(true);
+            //startButton.gameObject.SetActive(true);
             startButton1.gameObject.SetActive(true);
             startButton2.gameObject.SetActive(true);
         }
