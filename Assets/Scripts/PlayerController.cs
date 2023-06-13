@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
 {
     private Vector3 startPosition;
     private Quaternion startRotation;
+    private Rigidbody carRigidbody;
     private PhotonView photonView;
 
     void Start()
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         startPosition = transform.position;
         startRotation = transform.rotation;
         photonView = GetComponent<PhotonView>();
+        carRigidbody = GetComponent<Rigidbody>(); 
     }
 
     void Update()
@@ -23,6 +25,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
         {
             transform.position = startPosition;
             transform.rotation = startRotation;
+
+            carRigidbody.velocity = Vector3.zero;
+            carRigidbody.angularVelocity = Vector3.zero;
         }
     }
 }
