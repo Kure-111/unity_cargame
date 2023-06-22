@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Vehicles.Car
         // Update is called once per frame
         void Update()
         {
-            if (photonView.IsMine&& photonView.Owner == PhotonNetwork.MasterClient)
+            if (photonView.IsMine && photonView.Owner == PhotonNetwork.MasterClient)
             {
                 ultimateButton.gameObject.SetActive(true);
             }
@@ -75,9 +75,10 @@ namespace UnityStandardAssets.Vehicles.Car
             if (photonView.IsMine) //現在操作しているプレイヤーが自分自身であるかを確認します。
             {
                 //加速が良いタイプのパラメータに変更します。
-                car.m_FullTorqueOverAllWheels = 3000;
-                car.m_TractionControl = 0.2f;
-                car.m_Topspeed = 150;
+                car.m_FullTorqueOverAllWheels = 5000;
+                car.m_TractionControl = 0.1f;
+                car.m_Topspeed = 70;
+                car.m_MaximumSteerAngle = 50;
             }
         }
 
@@ -88,10 +89,11 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 //トップスピードが高いタイプのパラメータに変更します。
                 Debug.Log("Okkk");
-                car.m_FullTorqueOverAllWheels = 1500;
-                car.m_TractionControl = 0.5f;
-                car.m_Topspeed = 10;
+                car.m_FullTorqueOverAllWheels = 2000;
+                car.m_TractionControl = 0.1f;
+                car.m_Topspeed = 150;
                 car.m_Downforce = 200;
+                car.m_MaximumSteerAngle = 50;
             }
         }
         public void Normal()
@@ -99,10 +101,11 @@ namespace UnityStandardAssets.Vehicles.Car
             if (photonView.IsMine)
             {
                 //ノーマルタイプのパラメータに変更します。
-                car.m_FullTorqueOverAllWheels = 2000;
-                car.m_TractionControl = 0.5f;
-                car.m_Topspeed = 200;
+                car.m_FullTorqueOverAllWheels = 2500;
+                car.m_TractionControl = 0.1f;
+                car.m_Topspeed = 80;
                 car.m_Downforce = 150;
+                car.m_MaximumSteerAngle = 50;
             }
         }
         public void Durable()
@@ -110,12 +113,12 @@ namespace UnityStandardAssets.Vehicles.Car
             if (photonView.IsMine)
             {
                 //体当たりに強いタイプのパラメータに変更します。
-                car.m_FullTorqueOverAllWheels = 1500;
-                car.m_TractionControl = 0.5f;
-                car.m_Topspeed = 180;
+                car.m_FullTorqueOverAllWheels = 2500;
+                car.m_TractionControl = 0.1f;
+                car.m_Topspeed = 80;
                 car.m_Downforce = 300;
                 car.m_CentreOfMassOffset = new Vector3(0, -0.5f, 0);
-                car.m_MaximumSteerAngle = 20;
+                car.m_MaximumSteerAngle = 50;
             }
         }
     }

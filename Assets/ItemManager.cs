@@ -12,7 +12,7 @@ public class ItemManager : MonoBehaviourPunCallbacks
     {
         boost = playerCar.GetComponent<Boost>();
         wallSpawn = playerCar.GetComponent<WallSpawn>();
-        boost.enabled = false;
+        boost.enabled = true;
         wallSpawn.enabled = false;
     }
 

@@ -8,11 +8,12 @@ public class Boost : MonoBehaviourPunCallbacks
     private CarController carController;
     private bool usedBoost = false;
     private float originalTopSpeed;
+    private float originalMotorTorque;
 
     void Start()
     {
         carController = GetComponent<CarController>();
-        originalTopSpeed = carController.m_Topspeed;
+        originalMotorTorque = carController.m_WheelColliders[0].motorTorque;
     }
 
     void Update()
@@ -20,10 +21,11 @@ public class Boost : MonoBehaviourPunCallbacks
         if (photonView.IsMine && !usedBoost && Input.GetKeyDown(KeyCode.Return))
         {
             usedBoost = true;
-            carController.m_Topspeed *= 1.5f;
+            originalTopSpeed = carController.m_Topspeed;
+            carController.m_Topspeed *= 2f;
             foreach (var wheel in carController.m_WheelColliders)
             {
-                wheel.motorTorque = carController.m_Topspeed * 10f; // This might need to be adjusted
+                wheel.motorTorque = originalMotorTorque * 2f; // This might need to be adjusted
             }
             StartCoroutine(DisableBoostAfterSeconds(5f));
         }
@@ -35,7 +37,8 @@ public class Boost : MonoBehaviourPunCallbacks
         carController.m_Topspeed = originalTopSpeed;
         foreach (var wheel in carController.m_WheelColliders)
         {
-            wheel.motorTorque = 0f;
+            wheel.motorTorque = originalMotorTorque;
         }
+        usedBoost = false;
     }
 }

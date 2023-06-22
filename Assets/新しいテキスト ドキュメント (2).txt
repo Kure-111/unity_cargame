@@ -1,0 +1,76 @@
+public void Ultimate()
+{
+    if (photonView.IsMine)
+    {
+        // すべてのパラメータを最高に設定
+        car.m_FullTorqueOverAllWheels = 4000;
+        car.m_TractionControl = 0.1f;
+        car.m_Topspeed = 300;
+        car.m_Downforce = 300;
+        car.m_MaximumSteerAngle = 45;  
+        ultimateButton.gameObject.SetActive(false); 
+    }
+}
+
+public void Acceleration()
+{
+    if (photonView.IsMine)
+    {
+        // 加速に優れたパラメータを設定
+        car.m_FullTorqueOverAllWheels = 3500;
+        car.m_TractionControl = 0.01f;
+        car.m_Topspeed = 250;
+        car.m_MaximumSteerAngle = 30;  
+    }
+}
+
+public void Speed()
+{
+    if (photonView.IsMine)
+    {
+        // トップスピードが高いパラメータを設定
+        car.m_FullTorqueOverAllWheels = 3000;
+        car.m_TractionControl = 0.5f;
+        car.m_Topspeed = 280;
+        car.m_Downforce = 200;
+        car.m_MaximumSteerAngle = 30;  
+    }
+}
+
+public void Normal()
+{
+    if (photonView.IsMine)
+    {
+        // 平均的なパラメータを設定
+        car.m_FullTorqueOverAllWheels = 2000;
+        car.m_TractionControl = 0.5f;
+        car.m_Topspeed = 200;
+        car.m_Downforce = 150;
+        car.m_MaximumSteerAngle = 30;  
+    }
+}
+
+public void Durable()
+{
+    if (photonView.IsMine)
+    {
+        // 耐久性に優れたパラメータを設定
+        car.m_FullTorqueOverAllWheels = 1500;
+        car.m_TractionControl = 0.5f;
+        car.m_Topspeed = 180;
+        car.m_Downforce = 300;
+        car.m_CentreOfMassOffset = new Vector3(0, -0.5f, 0);
+        car.m_MaximumSteerAngle = 30;  
+    }
+}
+
+
+m_FullTorqueOverAllWheels：これは車のエンジントルクを制御します。値が大きいほど、エンジンからの出力が高くなり、車の加速力が上がります。
+
+m_TractionControl：これは車のトラクションコントロールを制御します。値が小さいほど、車輪がスリップする可能性が減少し、車の制御性が向上します。しかし、これは車の最高速度を低下させる可能性があります。
+
+m_Topspeed：これは車の最高速度を制御します。値が大きいほど、車はより速く走ることができます。
+
+m_Downforce：これは車のダウンフォース（地面と車との間の圧力）を制御します。値が大きいほど、車は地面に強く押し付けられ、より良い旋回性能を得ますが、これは車の最高速度を低下させる可能性があります。
+
+m_MaximumSteerAngle：これは車輪の最大旋回角を制御します。値が大きいほど、車はより急なカーブを描くことができますが、高速時の制御が難しくなる可能性があります。
