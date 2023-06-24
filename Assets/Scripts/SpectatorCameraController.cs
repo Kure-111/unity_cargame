@@ -7,6 +7,8 @@ public class SpectatorCameraController : MonoBehaviourPun
     public float zoomSpeed = 1000f;  // ズームの速度
     public Camera cam;
 
+    public float mouseSensitivity = 100.0f;  // マウスの感度
+    private float xRotation = 0.0f;
     void Start()
     {
         // カメラを上から見下ろすように回転させる
@@ -37,6 +39,16 @@ public class SpectatorCameraController : MonoBehaviourPun
                 // マウススクロールでズームイン/アウト
                 float scroll = Input.GetAxis("Mouse ScrollWheel");
                 transform.position += transform.forward * scroll * zoomSpeed * Time.deltaTime;
+                // マウスで視点変更
+                float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+                float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+                xRotation -= mouseY;
+                xRotation = Mathf.Clamp(xRotation, -90f, 90f); // これによりカメラが上下に180度以上回転するのを防ぎます
+
+                transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+                cam.transform.localRotation = Quaternion.Euler(xRotation, mouseX, 0f);
+
             }
         }
         else
